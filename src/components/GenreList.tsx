@@ -4,9 +4,10 @@ import { Button, HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui
 
 interface GenreListProps {
     onSelectGenre: (genre: Genre) => void;
+    selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: GenreListProps) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
     const { data: genres, isLoading, error } = useGenres();
 
     if (error) return null;
@@ -18,7 +19,12 @@ const GenreList = ({ onSelectGenre }: GenreListProps) => {
                 <ListItem key={genre.id} paddingY='5px'>
                     <HStack>
                         <Image src={getCroppedImgUrl(genre.image_background)} boxSize='32px' borderRadius={8} />
-                        <Button fontSize='lg' variant='link' onClick={() => onSelectGenre(genre)}>
+                        <Button
+                            fontSize='lg'
+                            fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}
+                            variant='link'
+                            onClick={() => onSelectGenre(genre)}
+                        >
                             {genre.name}
                         </Button>
                     </HStack>
