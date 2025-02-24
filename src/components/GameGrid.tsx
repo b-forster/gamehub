@@ -18,13 +18,13 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
             {error && <Text>{error}</Text>}
             <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} padding='10px' spacing={3}>
                 {games.map(game =>
-                    <GameCardContainer>
-                        <GameCard key={game.id} game={game} />
+                    <GameCardContainer key={game.id}>
+                        <GameCard game={game} />
                     </GameCardContainer>
                 )}
                 {isLoading && skeletons.map(skel =>
-                    <GameCardContainer>
-                        <GameCardSkeleton key={skel} />
+                    <GameCardContainer key={skel}>
+                        <GameCardSkeleton />
                     </GameCardContainer>
                 )}
             </SimpleGrid>
