@@ -1,6 +1,8 @@
+import noImage from '../assets/no-image-placeholder.webp';
+
 const getCroppedImgUrl = (url: string) => {
     // Finds 'media/' part of image url and inserts 'crop/600/400' afterwards
-    if (!url) return '';
+    if (!url) return noImage;
     const insertAfterString = 'media/';
     const insertUrlFragment = 'crop/600/400/';
 
